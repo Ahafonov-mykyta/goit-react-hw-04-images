@@ -10,7 +10,6 @@ export default class Modal extends React.Component {
       }  
       };
     
-  
     componentDidMount(){
         window.addEventListener('keydown', this.onKeyHandle )
     }
