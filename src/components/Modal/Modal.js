@@ -1,33 +1,35 @@
 
 
-import React from "react";
+import {useEffect} from "react";
 
-export default class Modal extends React.Component {
+export default function Modal ({showModal,onToogleModal,largeImageURL}) {
 
-    onKeyHandle = (e) => {
+     const onKeyHandle = (e) => {
       if(e.code === 'Escape'){
-        this.props.onToogleModal()
+        onToogleModal()
+        
       }  
       };
     
-    componentDidMount(){
-        window.addEventListener('keydown', this.onKeyHandle )
-    }
-    
-    componentWillUnmount(){
-      window.removeEventListener('keydown',  this.onKeyHandle )
-  }
+      useEffect(()=> {
+      window.addEventListener('keydown', onKeyHandle )
+
+      return()=>{
+        window.removeEventListener('keydown', onKeyHandle )
+      }
+    },[])
+
+
     
 
-    render(){
+   
      return  (  
-         <div onClick={(e)=> { if(e.target.classList.contains("overlay")){ this.props.onToogleModal() }}} className="overlay">
+         <div onClick={(e)=> { if(e.target.classList.contains("overlay")){ onToogleModal() }}} className="overlay">
         <div className="modal">
           <img
-            src={this.props.largeImageURL}
+            src={largeImageURL}
             alt=""
           />
         </div>
       </div>)
     }
-}

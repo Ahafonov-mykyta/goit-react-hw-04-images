@@ -1,16 +1,11 @@
 import React from "react";
 
 
-export default class Button extends React.Component{
+export default function Button({incrementPage, page, photo, totalHits}) {
 
-    render(){
-       
-        if (this.props.photo !== null && this.props.photo.length !== 0 && this.props.page !== 50 && this.props.page <= this.props.totalHits/10 ){
-        return  ( <button onClick={ this.props.incrementPage} className="button" type="button">Load more</button>)}
-       
-       }
-        
-       
+        if (photo !== null && photo.length !== 0 && page !== 50 && page <= totalHits/10 ){
+        return  ( <button onClick={ incrementPage} className="button" type="button">Load more</button>)}
+  
     }
 
 

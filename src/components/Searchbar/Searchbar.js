@@ -1,12 +1,9 @@
 import React from "react";
 
-export default class Searchbar extends React.Component {
+export default function Searchbar ({onSubmit}) {
 
-    
-    
-    render(){
        return <header className="searchbar">
-          <form className="SearchForm" onSubmit={this.props.onSubmit}>
+          <form className="SearchForm" onSubmit={onSubmit}>
             <button type="submit" className="searchForm-button">
               <span className="searchForm-button-label">Search</span>
             </button>
@@ -23,4 +20,3 @@ export default class Searchbar extends React.Component {
         </header>
     }
 
-}

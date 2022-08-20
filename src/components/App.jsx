@@ -1,38 +1,26 @@
-import React from 'react';
+import { useState } from 'react';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 
-export class App extends React.Component {
-  state = {
-    name: '',
-    page: 1,
+export function App() {
+  const [name, setName] = useState('');
+  const [page, setPage] = useState(1);
+
+  const incrementPage = () => {
+    setPage(prevState => prevState + 1);
   };
 
-  incrementPage = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
-  };
-
-  onSubmit = event => {
+  const onSubmit = event => {
     event.preventDefault();
     const searchName = event.currentTarget.name.value;
-    this.setState({
-      name: searchName,
-      page: 1,
-    });
+    setName(searchName);
+    setPage(1);
   };
 
-  render() {
-    return (
-      <div className="app">
-        <Searchbar onSubmit={this.onSubmit} />
-        <ImageGallery
-          name={this.state.name}
-          incrementPage={this.incrementPage}
-          page={this.state.page}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="app">
+      <Searchbar onSubmit={onSubmit} />
+      <ImageGallery name={name} incrementPage={incrementPage} page={page} />
+    </div>
+  );
 }
